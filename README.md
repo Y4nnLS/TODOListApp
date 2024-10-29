@@ -6,9 +6,6 @@
         <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/101208372?v=4" width="100px;" alt=""/><br /><sub><b><a href="https://github.com/Y4nnLS">Yann Lucas</a></b></sub></a><br />🤓☝</a></td>
     <td align="center">
         <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60533993?v=4" width="100px;" alt=""/><br /><sub><b><a href="https://github.com/Ypsiloon">Felipe Franco</a></b></sub></a><br />👻</a></td>
-    <td align="center">
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/96783942?v=4" width="100px;" alt=""/><br /><sub><b><a href="https://github.com/Ypsiloon">Thiago Martins</a></b></sub></a><br />🦤</a></td>
-  </table>
   </table>
 
 # Gerenciador de Tarefas
@@ -74,6 +71,25 @@ interface TarefaDao {
 - **Cadastro de Tarefas**: Permite adicionar uma nova tarefa com nome, descrição e prioridade.
 - **Visualização das Tarefas**: Exibe todas as tarefas cadastradas.
 - **Exclusão de Tarefas**: Permite deletar uma tarefa específica da lista.
+
+---
+## Melhorias Criativas
+- **Validação de Campos Obrigatórios com Toast's**
+  - Antes de salvar uma tarefa, o aplicativo fara a verificação e exibirá um Toast caso nome ou descrição estejam vazios. Informando o usuário que ele deve preencher os campos obrigatórios.
+  - Essa validação evita que tarefas incompletas/mal descritas sejam salvas, melhorando a experiência do usuário na organização de suas tarefas.
+
+- **Adição de Data de Conclusão e Notificação de Lembrete**
+  - O usuário poderá definir uma data de conclusão para cada tarefa e selecionar um número de dias antes do prazo para ser notificado. Essa notificação seria enviada com antecedência, alertando o usuário sobre a aproximação do prazo de uma tarefa.
+  - Essa funcionalidade ajuda os usuários a se organizarem melhor, permitindo que eles recebam lembretes antecipados para evitar atrasos.
+
+- **Organização das Tarefas por Projetos**
+  - Cada tarefa poderá ser associada a um projeto específico. Os projetos funcionariam como agrupadores, permitindo que o usuário organize as tarefas de forma hierárquica. Cada projeto conteria suas próprias tarefas, que podem ser visualizadas separadamente.
+  - Essa organização hierárquica facilita a gestão de tarefas relacionadas a um objetivo ou projeto maior, dando mais clareza ao usuário e possibilitando o gerenciamento de atividades mais complexas.
+
+- **Ordenação e Filtros**
+  - Permitir que o usuário filtre as tarefas por prioridade (ex.: Alta, Média, Baixa). Assim, o usuário pode visualizar apenas as tarefas mais importantes, o que ajuda na organização e foco nas tarefas de maior prioridade.
+  - Adicionar uma opção para ordenar as tarefas por diferentes critérios, como ordem alfabética, ordem de prioridade, por data de conclusão e por projeto.
+  - Essas ordenações e filtragens proporcionam um maior controle e visibilidade das tarefas, melhorando a produtividade e ajudando o usuário a visualizar suas tarefas do jeito que preferir.
 
 ---
 
