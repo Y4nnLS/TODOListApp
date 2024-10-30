@@ -65,6 +65,36 @@ interface TarefaDao {
 }
 ```
 ---
+### 3. Configuração do Banco de Dados com Room
+> [!NOTE]
+> A classe de banco de dados é configurada utilizando RoomDatabase com o padrão Singleton para garantir uma única instância.
+
+```kotlin
+
+@Database(entities = [Tarefa::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun tarefaDao(): TarefaDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "app_database"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}
+```
+
+---
 
 ## Funcionalidades
 
