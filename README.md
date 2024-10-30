@@ -22,7 +22,7 @@ Desenvolvimento de um aplicativo para o gerenciamento de tarefas, permitindo o c
 
 ## Estrutura do Projeto
 
-### 1. Entidade
+### Entidade
 
 
 > [!NOTE]
@@ -45,7 +45,7 @@ data class Tarefa(
 
 ---
 
-### 2. DAO (Data Access Object)
+### DAO (Data Access Object)
 
 > [!NOTE]
 > `TarefaDao` é responsável por todas as operações de banco de dados relacionadas à entidade `Tarefa`, incluindo os métodos de criação, leitura e exclusão.
@@ -64,8 +64,14 @@ interface TarefaDao {
     suspend fun deletarTarefa(tarefa: Tarefa) // Exclui uma tarefa específica do banco de dados com base em seu identificador (`id`).
 }
 ```
+## Funcionalidades
+
+- **Cadastro de Tarefas**: Permite adicionar uma nova tarefa com nome, descrição e prioridade.
+- **Visualização das Tarefas**: Exibe todas as tarefas cadastradas.
+- **Exclusão de Tarefas**: Permite deletar uma tarefa específica da lista.
+
 ---
-### 3. Configuração do Banco de Dados com Room
+### Configuração do Banco de Dados com Room
 > [!NOTE]
 > A classe de banco de dados é configurada utilizando RoomDatabase com o padrão Singleton para garantir uma única instância.
 
@@ -93,14 +99,30 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 ```
-
 ---
-
-## Funcionalidades
-
-- **Cadastro de Tarefas**: Permite adicionar uma nova tarefa com nome, descrição e prioridade.
-- **Visualização das Tarefas**: Exibe todas as tarefas cadastradas.
-- **Exclusão de Tarefas**: Permite deletar uma tarefa específica da lista.
+### Fluxo de Operações
+- Fluxo de Inserção:
+  1. Interação do Usuário: O usuário acessa a tela de cadastro e preenche os
+campos de nome, descrição e prioridade.
+  2. Ação de Inserção: Ao clicar no botão "Salvar", o aplicativo valida os campos
+obrigatórios.
+  3. Inserção no Banco: Após a validação, a tarefa é salva no banco de dados pelo
+método `inserir` do `TarefaDao`. A operação é executada em uma coroutine
+para evitar o bloqueio da interface.
+  4. Atualização da Interface: Após a inserção, o app atualiza a lista de exibição com
+as tarefas mais recentes.
+- Fluxo de Consulta:
+  1. Inicialização do App: Quando o aplicativo inicia, ele carrega todas as tarefas do
+banco de dados por meio do método `buscarTodos`.
+  2. Exibição dos Dados: As tarefas são exibidas em uma lista na interface usando
+`LazyColumn` no Jetpack Compose, apresentando cada tarefa com detalhes
+de nome, descrição e prioridade.
+- Fluxo de Exclusão:
+  1. Interação do Usuário: O usuário seleciona uma tarefa e escolhe a opção
+"Excluir".
+  2. Ação de Exclusão: A tarefa é removida do banco de dados pelo método
+`deletarTarefa`.
+  3. Atualização da Interface: A lista de tarefas é atualizada para refletir a exclusão.
 
 ---
 ## Melhorias Criativas
@@ -120,6 +142,41 @@ abstract class AppDatabase : RoomDatabase() {
   - Permitir que o usuário filtre as tarefas por prioridade (ex.: Alta, Média, Baixa). Assim, o usuário pode visualizar apenas as tarefas mais importantes, o que ajuda na organização e foco nas tarefas de maior prioridade.
   - Adicionar uma opção para ordenar as tarefas por diferentes critérios, como ordem alfabética, ordem de prioridade, por data de conclusão e por projeto.
   - Essas ordenações e filtragens proporcionam um maior controle e visibilidade das tarefas, melhorando a produtividade e ajudando o usuário a visualizar suas tarefas do jeito que preferir.
+---
+
+### Conclusão
+- Durante o desenvolvimento deste aplicativo de Gerenciamento de Tarefas, foram
+aprendidos conceitos importantes sobre o uso do Room para persistência de dados,
+integração com o Jetpack Compose para uma interface dinâmica e reativa, além da
+organização do código para garantir o padrão de projeto Singleton, essencial em
+aplicativos Android.
+- ### Principais Aprendizados:
+  - Como estruturar uma base de dados utilizando o Room e trabalhar com
+entidades e DAOs para gerenciar os dados.
+  - O uso de validações e notificações para melhorar a experiência do usuário e
+garantir integridade dos dados.
+  - A importância de filtros e ordenação para facilitar o acesso rápido às
+informações mais relevantes.
+Desafios Enfrentados:
+Um dos principais desafios foi planejar o fluxo de dados para que todas as operações
+de CRUD fossem realizadas de forma eficiente, além de assegurar que a aplicação
+mantivesse uma estrutura organizada e de fácil manutenção.
+
+---
+
+### Prompt para o ChatGPT
+```
+"Preciso de ajuda para desenvolver um aplicativo de Gerenciamento de Tarefas em Kotlin, utilizando Jetpack Compose e o banco de dados Room. 
+Preciso de:
+
+1. Definição da entidade Tarefa com campos para nome, descrição e prioridade.
+2. Criação do DAO TarefaDao com métodos para inserir, buscar e deletar tarefas.
+3. Configuração de uma classe AppDatabase com o padrão Singleton.
+4. Orientação sobre os fluxos de operação de inserção, consulta e exclusão para o aplicativo.
+5. Sugestões de melhorias criativas, como validação de campos e notificações.
+
+Poderia também gerar exemplos de código para essas funcionalidades?"
+```
 
 ---
 
